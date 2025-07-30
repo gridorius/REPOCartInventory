@@ -1,0 +1,117 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>12</LangVersion>
+    <Nullable>enable</Nullable>
+    <Authors>Gridorius</Authors>
+    <Version>1.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GameDirectory>C:\Program Files (x86)\Steam\steamapps\common\REPO</GameDirectory>
+    <ThunderStoreProfile>public</ThunderStoreProfile>
+    <BepInExDirectory>$(AppData)\Thunderstore Mod Manager\DataFolder\REPO\profiles\$(ThunderStoreProfile)\BepInEx</BepInExDirectory>
+    <StartArguments>--doorstop-enable true --doorstop-target "$(AppData)\Thunderstore Mod Manager\DataFolder\REPO\profiles\$(ThunderStoreProfile)\BepInEx\core\BepInEx.Preloader.dll" --profile "$(GaleProfileName)"</StartArguments>
+  </PropertyGroup>
+
+  <!-- Add Package Sources -->
+  <PropertyGroup>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json;
+      https://nuget.windows10ce.com/nuget/v3/index.json
+    </RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <!-- Package References -->
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.1" PrivateAssets="all" IncludeAssets="build" />
+    <PackageReference Include="Linkoid.Repo.Common.Build" Version="0.2.2" />
+    <PackageReference Include="Linkoid.Repo.Plugin.Build" Version="*" PrivateAssets="all" />
+    
+    <PackageReference Include="BepInEx.Core" Version="5.*" ExcludeAssets="runtime" />
+    
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="UnityEngine.Modules" Version="2022.3.21" IncludeAssets="compile" PrivateAssets="all"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Facepunch.Steamworks.Win64">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="LevelScaling">
+      <HintPath>..\..\AppData\Roaming\Thunderstore Mod Manager\DataFolder\REPO\profiles\public\BepInEx\plugins\Swaggies-LevelScaling\LevelScaling.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotonRealtime">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\PhotonRealtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PhotonUnityNetworking">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\PhotonUnityNetworking.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="REPOLib">
+      <HintPath>..\..\AppData\Roaming\Thunderstore Mod Manager\DataFolder\REPO\profiles\public\BepInEx\plugins\Zehs-REPOLib\REPOLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.IO.Compression.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.Transactions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\Unity.InputSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
