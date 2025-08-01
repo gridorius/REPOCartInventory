@@ -30,7 +30,7 @@ internal partial class PhysGrabCartPatch
         LevelStats.CartValuables[__instance] = valuables.Select(vp => vp.Valuable).ToList();
         float cartPrice = 0;
 
-        if (!ModConfig.EnableValuableConvert.Value)
+        if (!ModConfig.EnableValuableConvert.Value || !SemiFunc.IsMasterClientOrSingleplayer())
             return;
 
         foreach (var value in valuables)
@@ -42,15 +42,12 @@ internal partial class PhysGrabCartPatch
             CartInventory.Logger.LogInfo($"additional item value: {componentValue}");
             ___itemsInCart.Remove(value.Physic);
             value.Physic.DestroyPhysGrabObject();
-        } 
+        }
 
         if (!cartBoxes.Any())
         {
-            if (SemiFunc.IsMasterClientOrSingleplayer())
-            {
-                CartInventory.Logger.LogWarning($"Spawn bag {cartPrice}");
-                SpawnHelper.SpawnTaxBagInCart(__instance, (int)cartPrice);
-            }
+            CartInventory.Logger.LogWarning($"Spawn bag {cartPrice}");
+            SpawnHelper.SpawnTaxBagInCart(__instance, (int)cartPrice);
         }
         else if (cartBoxes.Count() > 1)
             foreach (var box in cartBoxes.Skip(1))

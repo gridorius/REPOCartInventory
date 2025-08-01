@@ -21,7 +21,8 @@ internal class EnemyDirectorPatch
         ref List<EnemySetup> ___enemyListCurrent,
         ref float ___despawnedTimeMultiplier)
     {
-        if (!ModConfig.EnableEnemyScaling.Value)
+        if (!ModConfig.EnableEnemyScaling.Value ||
+            LevelStats.CurrentLevel < ModConfig.EnableEnemyScalingSkipLevels.Value + 1)
             return true;
         var difficultyMultiplier1 = SemiFunc.RunGetDifficultyMultiplier1();
         var difficultyMultiplier2 = SemiFunc.RunGetDifficultyMultiplier2();
@@ -30,26 +31,26 @@ internal class EnemyDirectorPatch
         if (difficultyMultiplier2 > 0.0)
         {
             ___amountCurve3Value =
-                Mathf.CeilToInt(__instance.amountCurve3_2.Evaluate(difficultyMultiplier1) *
-                                ModConfig.D2D3Multiplier.Value) + 1;
+                Mathf.CeilToInt(__instance.amountCurve3_2.Evaluate(difficultyMultiplier2) *
+                                ModConfig.EnemyTier3Multiplier.Value) + 1;
             ___amountCurve2Value =
-                Mathf.CeilToInt(__instance.amountCurve2_2.Evaluate(difficultyMultiplier1) *
-                                ModConfig.D2D2Multiplier.Value) + 1;
+                Mathf.CeilToInt(__instance.amountCurve2_2.Evaluate(difficultyMultiplier2) *
+                                ModConfig.EnemyTier2Multiplier.Value) + 1;
             ___amountCurve1Value =
-                Mathf.CeilToInt(__instance.amountCurve1_2.Evaluate(difficultyMultiplier1) *
-                                ModConfig.D2D1Multiplier.Value) + 1;
+                Mathf.CeilToInt(__instance.amountCurve1_2.Evaluate(difficultyMultiplier2) *
+                                ModConfig.EnemyTier1Multiplier.Value) + 1;
         }
         else
         {
             ___amountCurve3Value =
                 Mathf.CeilToInt(__instance.amountCurve3_1.Evaluate(difficultyMultiplier1) *
-                                ModConfig.D1D3Multiplier.Value) + 1;
+                                ModConfig.EnemyTier3Multiplier.Value);
             ___amountCurve2Value =
                 Mathf.CeilToInt(__instance.amountCurve2_1.Evaluate(difficultyMultiplier1) *
-                                ModConfig.D1D2Multiplier.Value) + 1;
+                                ModConfig.EnemyTier2Multiplier.Value);
             ___amountCurve1Value =
                 Mathf.CeilToInt(__instance.amountCurve1_1.Evaluate(difficultyMultiplier1) *
-                                ModConfig.D1D1Multiplier.Value) + 1;
+                                ModConfig.EnemyTier1Multiplier.Value);
         }
 
         var traverse = Traverse.Create(EnemyDirector.instance);

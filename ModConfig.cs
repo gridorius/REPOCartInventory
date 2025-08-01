@@ -12,15 +12,17 @@ public static class ModConfig
     public static ConfigEntry<string>? TruckExtractionKey { get; private set; }
     public static ConfigEntry<string>? BagSplitKey { get; private set; }
     public static ConfigEntry<bool>? CarefulMode { get; private set; }
+    public static ConfigEntry<int>? CarefulSkipChance { get; private set; }
+    public static ConfigEntry<float>? CarefulSpawnT3Price { get; private set; }
+    public static ConfigEntry<float>? CarefulSpawnT2Price { get; private set; }
+    public static ConfigEntry<float>? CarefulSpawnT1Price { get; private set; }
     public static ConfigEntry<bool>? EnableModuleScaling { get; private set; }
     public static ConfigEntry<bool>? EnableValuableScaling { get; private set; }
     public static ConfigEntry<bool>? EnableEnemyScaling { get; private set; }
-    public static ConfigEntry<float>? D1D1Multiplier { get; private set; }
-    public static ConfigEntry<float>? D1D2Multiplier { get; private set; }
-    public static ConfigEntry<float>? D1D3Multiplier { get; private set; }
-    public static ConfigEntry<float>? D2D1Multiplier { get; private set; }
-    public static ConfigEntry<float>? D2D2Multiplier { get; private set; }
-    public static ConfigEntry<float>? D2D3Multiplier { get; private set; }
+    public static ConfigEntry<int>? EnableEnemyScalingSkipLevels { get; private set; }
+    public static ConfigEntry<float>? EnemyTier1Multiplier { get; private set; }
+    public static ConfigEntry<float>? EnemyTier2Multiplier { get; private set; }
+    public static ConfigEntry<float>? EnemyTier3Multiplier { get; private set; }
     public static ConfigEntry<bool>? EnableExtractionScaling { get; private set; }
 
     public static ConfigEntry<bool>? HudShowLevel { get; private set; }
@@ -56,7 +58,6 @@ public static class ModConfig
         ShowHud = config.Bind(section, "Show hud", true);
         StatusBarX = config.Bind(section, "PositionX", -240f);
         StatusBarY = config.Bind(section, "PositionY", 30f);
-
         HudShowLevel = config.Bind(section, "Show level", true);
         HudShowTime = config.Bind(section, "Show time", true);
         HudShowSaved = config.Bind(section, "Show saved", true);
@@ -81,6 +82,10 @@ public static class ModConfig
     {
         var section = "Careful mode";
         CarefulMode = config.Bind(section, "Enable", true);
+        CarefulSkipChance = config.Bind(section, "Chance skip spawn, damage saved to next iteration", 40);
+        CarefulSpawnT3Price = config.Bind(section, "Damage to spawn enemy t3", 8000f);
+        CarefulSpawnT2Price = config.Bind(section, "Damage to spawn enemy t2", 4000f);
+        CarefulSpawnT1Price = config.Bind(section, "Damage to spawn enemy t1", 2000f);
     }
 
     private static void Scaling(ConfigFile config)
@@ -89,12 +94,10 @@ public static class ModConfig
         EnableModuleScaling = config.Bind(section, "Enable module scaling", true);
         EnableValuableScaling = config.Bind(section, "Enable valuable scaling", true);
         EnableEnemyScaling = config.Bind(section, "Enable enemy scaling", true);
-        D1D3Multiplier = config.Bind(section, "Enable d1 d3 scaling", 1.2f);
-        D1D2Multiplier = config.Bind(section, "Enable d1 d2 scaling", 1.4f);
-        D1D1Multiplier = config.Bind(section, "Enable d1 d1 scaling", 1.8f);
-        D2D3Multiplier = config.Bind(section, "Enable d2 d3 scaling", 1.1f);
-        D2D2Multiplier = config.Bind(section, "Enable d2 d2 scaling", 1.3f);
-        D2D1Multiplier = config.Bind(section, "Enable d2 d1 scaling", 1.6f);
+        EnableEnemyScalingSkipLevels = config.Bind(section, "Enable enemy scaling skip levels", 1);
+        EnemyTier3Multiplier = config.Bind(section, "Enemy t3 multiplier", 1.2f);
+        EnemyTier2Multiplier = config.Bind(section, "Enemy t2 multiplier", 1.4f);
+        EnemyTier1Multiplier = config.Bind(section, "Enemy t1 multiplier", 1.8f);
         EnableExtractionScaling = config.Bind(section, "Enable extraction scaling", true);
     }
 }

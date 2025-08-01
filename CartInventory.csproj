@@ -47,7 +47,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="LevelScaling">
-      <HintPath>..\..\AppData\Roaming\Thunderstore Mod Manager\DataFolder\REPO\profiles\public\BepInEx\plugins\Swaggies-LevelScaling\LevelScaling.dll</HintPath>
+      <HintPath>..\..\Downloads\Swaggies-LevelScaling-0.7.0\LevelScaling.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="mscorlib">
@@ -63,6 +63,10 @@
     </Reference>
     <Reference Include="REPOLib">
       <HintPath>..\..\AppData\Roaming\Thunderstore Mod Manager\DataFolder\REPO\profiles\public\BepInEx\plugins\Zehs-REPOLib\REPOLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="REPO_Shop_Items_in_Level">
+      <HintPath>..\..\Downloads\itsUndefined-Shop_Items_Spawn_in_Level-1.7.17\REPO_Shop_Items_in_Level.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">

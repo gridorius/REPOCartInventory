@@ -103,7 +103,8 @@ internal class ItemsStatsUI(CartInventory cartInventory) : SemiUI
         {
             DrawLine("COLLECTED",
                 $"{collected.Item1} / {LevelStats.ValuableObjects.Count}" + (ModConfig.HudShowCollectedPercent.Value
-                    ? $"({(float)collected.Item1 / (float)LevelStats.ValuableObjects.Count:p})"
+                    ? $"({(LevelStats.ValuableObjects.Count > 0
+                        ? ((float)collected.Item1 / (float)LevelStats.ValuableObjects.Count) : 1m):p})"
                     : ""),
                 GrayColor);
         }

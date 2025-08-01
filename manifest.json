@@ -1,8 +1,8 @@
 {
   "name": "CartInventory",
-  "version_number": "1.1.8",
+  "version_number": "1.2.0",
   "website_url": "",
-  "description": "BETA",
+  "description": "This mod enhances item and enemy management:item conversion, advanced HUD, spawn customization, truck resource saving,and dynamic difficulty scaling.",
   "dependencies": [
     "BepInEx-BepInExPack-5.4.2100",
     "Zehs-REPOLib-2.1.0"
