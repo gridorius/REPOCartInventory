@@ -20,15 +20,16 @@ public class PhysGrabObjectImpactDetectorPatches
             return;
 
         LevelStats.TotalLost += valueLost;
+        LevelStats.UpdateLevelDollars();
         ValuableObject? component = __instance?.GetComponent<ValuableObject>();
         if (ModConfig.CarefulMode.Value && component != null)
         {
+            if (LevelStats.Orbs.Contains(component) && !ModConfig.CarefulOrbDamage.Value)
+                return;
             LevelStats.TotalValuablesDamage += valueLost;
             if (SemiFunc.IsMasterClientOrSingleplayer())
                 CarefulHelper.RollSpawn(component);
         }
-
-        LevelStats.UpdateLevelDollars();
     }
 
     [HarmonyPatch(typeof(PhysGrabObject), "DestroyPhysGrabObjectRPC")]

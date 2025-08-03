@@ -7,6 +7,7 @@ namespace CartInventory;
 public class LevelStats
 {
     public static float TotalLost;
+    public static int EnemyKills = 0;
     public static List<PhysGrabCart> Carts = new();
     public static float LevelDollars;
     public static int TotalModules;
@@ -16,7 +17,10 @@ public class LevelStats
     public static float Time;
     public static TruckScreenText.PlayerChatBoxState TruckScreenState = TruckScreenText.PlayerChatBoxState.Idle;
     public static List<ValuableObject> ValuableObjects = new();
+    public static List<ValuableObject> Orbs = new();
     public static Dictionary<PhysGrabCart, List<ValuableObject>> CartValuables = new();
+    public static List<EnemyParent> ImmortalEnemies = new();
+    public static int EnemyTotal = 0;
 
     public static int CurrentLevel => RunManager.instance.levelsCompleted + 1;
 
@@ -36,18 +40,20 @@ public class LevelStats
         LevelDollars = 0;
         TotalLost = 0;
         Time = 0;
+        EnemyKills = 0;
         TotalValuablesDamage = 0;
         TotalModules = 0;
+        EnemyTotal = 0;
         ExploredModules = 0;
         FirstExtractionPointOpened = false;
+        Orbs.Clear();
+        ImmortalEnemies.Clear();
         Carts.Clear();
         CartValuables.Clear();
     }
 
     public static void AddModuleExplored()
     {
-        // if (!SemiFunc.IsMasterClientOrSingleplayer() || !SemiFunc.RunIsLevel())
-        //     return;
         ++ExploredModules;
     }
 
@@ -89,9 +95,10 @@ public class LevelStats
 
     public static void RemoveValuableObject(ValuableObject valuableObject)
     {
-        if (!ValuableObjects.Contains(valuableObject))
-            return;
-        ValuableObjects.Remove(valuableObject);
+        if (Orbs.Contains(valuableObject))
+            Orbs.Remove(valuableObject);
+        if (ValuableObjects.Contains(valuableObject))
+            ValuableObjects.Remove(valuableObject);
     }
 
     public static void ResetValuables()

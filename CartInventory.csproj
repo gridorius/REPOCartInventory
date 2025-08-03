@@ -46,6 +46,10 @@
       <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="ItemSeller">
+      <HintPath>..\..\Downloads\OldBody-ItemSeller-1.0.4\ItemSeller.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="LevelScaling">
       <HintPath>..\..\Downloads\Swaggies-LevelScaling-0.7.0\LevelScaling.dll</HintPath>
       <Private>False</Private>
@@ -114,6 +118,10 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnlimitedOrbCap">
+      <HintPath>..\..\Downloads\TheRavenNest-UnlimitedOrbs-1.0.3\UnlimitedOrbCap.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

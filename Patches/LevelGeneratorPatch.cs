@@ -16,9 +16,9 @@ internal class LevelGeneratorPatch
             return LevelStats.CurrentModCount;
 
         return new LevelLerpBuilder()
-            .AddScalar(2, 2 + LevelStats.CurrentLevel)
-            .Add(6, 6)
-            .Add(10, 10)
+            .AddScalar(2, 4 + LevelStats.CurrentLevel)
+            .Add(6, 8)
+            .Add(10, 12)
             .Add(20, 16)
             .Add(50, 20)
             .Add(100, 25)

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Globalization;
+using System.Linq;
 using CartInventory.Extensions;
 using CartInventory.Patches;
 using HarmonyLib;
@@ -101,28 +102,44 @@ internal class ItemsStatsUI(CartInventory cartInventory) : SemiUI
         var collected = LevelStats.GetCollectedCount();
         if (ModConfig.HudShowCollected.Value)
         {
+            string percent = "";
+            if (ModConfig.HudShowCollectedPercent.Value)
+            {
+                var floatPercent = LevelStats.ValuableObjects.Count > 0
+                    ? (decimal)collected.Item1 / (decimal)LevelStats.ValuableObjects.Count
+                    : 1m;
+                percent = $"({floatPercent:p})";
+            }
+
             DrawLine("COLLECTED",
-                $"{collected.Item1} / {LevelStats.ValuableObjects.Count}" + (ModConfig.HudShowCollectedPercent.Value
-                    ? $"({(LevelStats.ValuableObjects.Count > 0
-                        ? ((float)collected.Item1 / (float)LevelStats.ValuableObjects.Count) : 1m):p})"
-                    : ""),
+                $"{collected.Item1} / {LevelStats.ValuableObjects.Count}{percent}",
                 GrayColor);
         }
 
         if (ModConfig.HudShowDollars.Value)
         {
+            string percent = "";
+            if (ModConfig.HudShowDollarsPercent.Value)
+            {
+                var floatPercent = LevelStats.LevelDollars > 0
+                    ? (decimal)collected.Item2 / (decimal)LevelStats.LevelDollars
+                    : 1m;
+                percent = $"({floatPercent:p})";
+            }
+
             DrawLine("DOLLARS",
-                $"{collected.Item2.FormatDollars()} / {LevelStats.LevelDollars.FormatDollars()}" + (
-                    ModConfig.HudShowDollarsPercent.Value
-                        ? $"({collected.Item2 / LevelStats.LevelDollars:p})"
-                        : ""),
+                $"{collected.Item2.FormatDollars()} / {LevelStats.LevelDollars.FormatDollars()}" + percent,
                 DollarColor);
         }
 
         if (ModConfig.HudShowLost.Value && LevelStats.TotalLost > 0)
             DrawLine("LOST", LevelStats.TotalLost.FormatDollars(), DangerColor);
         if (ModConfig.HudShowExplored.Value)
-            DrawLine("EXPLORED", $"{LevelStats.ExploredModules}/{LevelStats.TotalModules}", GrayColor);
+            DrawLine("EXPLORED", $"{LevelStats.ExploredModules} / {LevelStats.TotalModules}", GrayColor);
+        if (ModConfig.HudShowImmortal.Value)
+            DrawLine("IMMORTAL", $"{LevelStats.ImmortalEnemies.Count} / {LevelStats.EnemyTotal}", DangerColor);
+        if (ModConfig.HudShowKills.Value)
+            DrawLine("KILLS", $"{LevelStats.EnemyKills}", GrayColor);
         if (ModConfig.HudShowCarts.Value)
         {
             var index = 0;

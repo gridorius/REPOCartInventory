@@ -12,19 +12,21 @@ public static class ModConfig
     public static ConfigEntry<string>? TruckExtractionKey { get; private set; }
     public static ConfigEntry<string>? BagSplitKey { get; private set; }
     public static ConfigEntry<bool>? CarefulMode { get; private set; }
+    public static ConfigEntry<bool>? CarefulOrbDamage { get; private set; }
     public static ConfigEntry<int>? CarefulSkipChance { get; private set; }
-    public static ConfigEntry<float>? CarefulSpawnT3Price { get; private set; }
-    public static ConfigEntry<float>? CarefulSpawnT2Price { get; private set; }
-    public static ConfigEntry<float>? CarefulSpawnT1Price { get; private set; }
+    public static ConfigEntry<int>? CarefulSpawnT3Price { get; private set; }
+    public static ConfigEntry<int>? CarefulSpawnT2Price { get; private set; }
+    public static ConfigEntry<int>? CarefulSpawnT1Price { get; private set; }
     public static ConfigEntry<bool>? EnableModuleScaling { get; private set; }
     public static ConfigEntry<bool>? EnableValuableScaling { get; private set; }
     public static ConfigEntry<bool>? EnableEnemyScaling { get; private set; }
+    public static ConfigEntry<bool>? EnableImmortalEnemy { get; private set; }
+    public static ConfigEntry<int>? ImmortalEnemyChance { get; private set; }
     public static ConfigEntry<int>? EnableEnemyScalingSkipLevels { get; private set; }
     public static ConfigEntry<float>? EnemyTier1Multiplier { get; private set; }
     public static ConfigEntry<float>? EnemyTier2Multiplier { get; private set; }
     public static ConfigEntry<float>? EnemyTier3Multiplier { get; private set; }
     public static ConfigEntry<bool>? EnableExtractionScaling { get; private set; }
-
     public static ConfigEntry<bool>? HudShowLevel { get; private set; }
     public static ConfigEntry<bool>? HudShowTime { get; private set; }
     public static ConfigEntry<bool>? HudShowSaved { get; private set; }
@@ -34,8 +36,11 @@ public static class ModConfig
     public static ConfigEntry<bool>? HudShowDollarsPercent { get; private set; }
     public static ConfigEntry<bool>? HudShowLost { get; private set; }
     public static ConfigEntry<bool>? HudShowExplored { get; private set; }
+    public static ConfigEntry<bool>? HudShowImmortal { get; private set; }
+    public static ConfigEntry<bool>? HudShowKills { get; private set; }
     public static ConfigEntry<bool>? HudShowCarts { get; private set; }
 
+    private static ConfigDescription ChanceRange = new ConfigDescription("", new AcceptableValueRange<int>(0, 100));
 
     public static void Configure(ConfigFile config)
     {
@@ -67,6 +72,8 @@ public static class ModConfig
         HudShowDollarsPercent = config.Bind(section, "Show dollars percent", true);
         HudShowLost = config.Bind(section, "Show lost", true);
         HudShowExplored = config.Bind(section, "Show explored", true);
+        HudShowImmortal = config.Bind(section, "Show immortal", true);
+        HudShowKills = config.Bind(section, "Show kills", true);
         HudShowCarts = config.Bind(section, "Show carts", true);
     }
 
@@ -81,23 +88,28 @@ public static class ModConfig
     private static void CfMode(ConfigFile config)
     {
         var section = "Careful mode";
+        var intDescriptionRange = new ConfigDescription("", new AcceptableValueRange<int>(2, 20000));
         CarefulMode = config.Bind(section, "Enable", true);
-        CarefulSkipChance = config.Bind(section, "Chance skip spawn, damage saved to next iteration", 40);
-        CarefulSpawnT3Price = config.Bind(section, "Damage to spawn enemy t3", 8000f);
-        CarefulSpawnT2Price = config.Bind(section, "Damage to spawn enemy t2", 4000f);
-        CarefulSpawnT1Price = config.Bind(section, "Damage to spawn enemy t1", 2000f);
+        CarefulOrbDamage = config.Bind(section, "Register orb damage", false);
+        CarefulSkipChance = config.Bind(section, "Chance skip spawn, damage saved to next iteration", 40, ChanceRange);
+        CarefulSpawnT3Price = config.Bind(section, "Damage to spawn enemy t3", 5000, intDescriptionRange);
+        CarefulSpawnT2Price = config.Bind(section, "Damage to spawn enemy t2", 3000, intDescriptionRange);
+        CarefulSpawnT1Price = config.Bind(section, "Damage to spawn enemy t1", 2000, intDescriptionRange);
     }
 
     private static void Scaling(ConfigFile config)
     {
         var section = "Scaling";
+        var floatDescriptionRange = new ConfigDescription("", new AcceptableValueRange<float>(1f, 10f));
         EnableModuleScaling = config.Bind(section, "Enable module scaling", true);
         EnableValuableScaling = config.Bind(section, "Enable valuable scaling", true);
         EnableEnemyScaling = config.Bind(section, "Enable enemy scaling", true);
+        EnableImmortalEnemy = config.Bind(section, "Enable immortal", true);
+        ImmortalEnemyChance = config.Bind(section, "Immortal chance", 30, ChanceRange);
         EnableEnemyScalingSkipLevels = config.Bind(section, "Enable enemy scaling skip levels", 1);
-        EnemyTier3Multiplier = config.Bind(section, "Enemy t3 multiplier", 1.2f);
-        EnemyTier2Multiplier = config.Bind(section, "Enemy t2 multiplier", 1.4f);
-        EnemyTier1Multiplier = config.Bind(section, "Enemy t1 multiplier", 1.8f);
+        EnemyTier3Multiplier = config.Bind(section, "Enemy t3 multiplier", 1.2f, floatDescriptionRange);
+        EnemyTier2Multiplier = config.Bind(section, "Enemy t2 multiplier", 1.4f, floatDescriptionRange);
+        EnemyTier1Multiplier = config.Bind(section, "Enemy t1 multiplier", 1.8f, floatDescriptionRange);
         EnableExtractionScaling = config.Bind(section, "Enable extraction scaling", true);
     }
 }

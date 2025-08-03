@@ -24,7 +24,7 @@ public static class SpawnHelper
 
     public static void SpawnTaxBag(Vector3 spawnPosition, int dollars)
     {
-        var original = AssetManager.instance.surplusValuableMedium;
+        var original = AssetManager.instance.surplusValuableSmall;
         var gameObject = SemiFunc.IsMultiplayer()
             ? PhotonNetwork.InstantiateRoomObject("Valuables/" + original.name, spawnPosition,
                 Quaternion.identity)

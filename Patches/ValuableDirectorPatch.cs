@@ -56,16 +56,16 @@ internal class ValuableDirectorPatch
         if (!ModConfig.EnableValuableScaling.Value)
             return inAmount;
         var multiplier = new LevelLerpBuilder()
-            .AddScalar(2, 1.1f)
-            .Add(4, 1.2f)
-            .Add(6, 1.4f)
+            .AddScalar(2, 1f)
+            .Add(4, 1.4f)
+            .Add(6, 1.8f)
             .Add(10, 2f)
-            .Add(15, 2.3f)
-            .Add(20, 2.6f)
+            .Add(15, 2.4f)
+            .Add(20, 2.7f)
             .Add(30, 3f)
             .Add(50, 3.6f)
             .Add(75, 4f)
-            .Add(100, 5f)
+            .Add(100, 4.7f)
             .GetValue(5);
 
         return Mathf.RoundToInt(inAmount * multiplier);

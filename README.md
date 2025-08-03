@@ -1,4 +1,3 @@
-
 # ⚠️ Осторожно | ⚠️ Warning
 
 **[RU]**  
@@ -57,6 +56,8 @@ This mod adds:
 - `Show dollars percent` – процент собранных долларов | show dollar collection %
 - `Show lost` – отображать урон предметов | show item damage
 - `Show explored` – исследованные модули | show explored modules
+- `Show immortal` – количество безсмертных | show immortal
+- `Show kills` – количество убийств | show kills
 - `Show carts` – показывать тележки | show carts
 
 ---
@@ -75,7 +76,7 @@ This mod adds:
 - `Chance skip spawn, damage saved to next iteration`  
   **[RU]** шанс пропустить спавн мобов, урон сохраняется  
   **[EN]** chance to skip mob spawn, damage carries over
-
+- `Register orb damage` – регистрировать урон по орбам | register orb damage
 - `Damage to spawn enemy t3` – урон для врага тира 3 | damage to spawn tier 3 enemy
 - `Damage to spawn enemy t2` – урон для врага тира 2 | damage to spawn tier 2 enemy
 - `Damage to spawn enemy t1` – урон для врага тира 1 | damage to spawn tier 1 enemy
@@ -87,6 +88,8 @@ This mod adds:
 - `Enable module scaling` – измененная генерация модулей | enable module scaling
 - `Enable valuable scaling` – измененная генерация предметов | enable item scaling
 - `Enable enemy scaling` – измененный спавн врагов | enable enemy scaling
+- `Enable immortal` – безсмертные враги | enable immortal enemies
+- `Immortal chance` – шанс появление безсмертного врага | chance spawn immortal enemies
 - `Enable enemy scaling skip levels` – пропуск уровней перед масштабированием | skip levels before scaling
 - `Enemy t3 multiplier` – множитель врагов тира 3 | tier 3 enemy multiplier
 - `Enemy t2 multiplier` – множитель врагов тира 2 | tier 2 enemy multiplier

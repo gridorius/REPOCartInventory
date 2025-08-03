@@ -10,8 +10,6 @@ public static class ValuableObjectPatch
     [HarmonyPostfix]
     private static void Start()
     {
-        if (!SemiFunc.IsMasterClientOrSingleplayer() || !SemiFunc.RunIsLevel())
-            return;
     }
 
     [HarmonyPatch("DollarValueSetLogic")]
@@ -27,9 +25,9 @@ public static class ValuableObjectPatch
             var traverse = Traverse.Create(__instance).Field("dollarValueCurrent");
             var num = traverse.GetValue<float>();
             if (num <= 1000.0)
-                traverse.SetValue((float)(num * 1.7));
+                traverse.SetValue((float)(num * 1.5));
             else if (num <= 5000.0)
-                traverse.SetValue((float)(num * 1.4));
+                traverse.SetValue((float)(num * 1.3));
             else if (num <= 10000.0)
                 traverse.SetValue((float)(num * 1.2));
             else

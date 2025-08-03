@@ -32,25 +32,25 @@ internal class EnemyDirectorPatch
         {
             ___amountCurve3Value =
                 Mathf.CeilToInt(__instance.amountCurve3_2.Evaluate(difficultyMultiplier2) *
-                                ModConfig.EnemyTier3Multiplier.Value) + 1;
+                                ModConfig.EnemyTier3Multiplier.Value) + 2;
             ___amountCurve2Value =
                 Mathf.CeilToInt(__instance.amountCurve2_2.Evaluate(difficultyMultiplier2) *
-                                ModConfig.EnemyTier2Multiplier.Value) + 1;
+                                ModConfig.EnemyTier2Multiplier.Value) + 2;
             ___amountCurve1Value =
                 Mathf.CeilToInt(__instance.amountCurve1_2.Evaluate(difficultyMultiplier2) *
-                                ModConfig.EnemyTier1Multiplier.Value) + 1;
+                                ModConfig.EnemyTier1Multiplier.Value) + 2;
         }
         else
         {
             ___amountCurve3Value =
                 Mathf.CeilToInt(__instance.amountCurve3_1.Evaluate(difficultyMultiplier1) *
-                                ModConfig.EnemyTier3Multiplier.Value);
+                                ModConfig.EnemyTier3Multiplier.Value) + 1;
             ___amountCurve2Value =
                 Mathf.CeilToInt(__instance.amountCurve2_1.Evaluate(difficultyMultiplier1) *
-                                ModConfig.EnemyTier2Multiplier.Value);
+                                ModConfig.EnemyTier2Multiplier.Value) + 1;
             ___amountCurve1Value =
                 Mathf.CeilToInt(__instance.amountCurve1_1.Evaluate(difficultyMultiplier1) *
-                                ModConfig.EnemyTier1Multiplier.Value);
+                                ModConfig.EnemyTier1Multiplier.Value) + 1;
         }
 
         var traverse = Traverse.Create(EnemyDirector.instance);

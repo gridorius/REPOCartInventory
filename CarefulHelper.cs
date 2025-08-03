@@ -16,14 +16,11 @@ public class CarefulHelper
             var inExtractionPoint = Traverse.Create(roomValue).Field("inExtractionPoint").GetValue<bool>();
             if (inExtractionPoint || TruckController.TruckItems.Any(vf => vf.Valuable == component))
                 return;
-            var roll = Random.Range(0, 100);
             var enemiesDifficulty2 = EnemyDirector.instance.enemiesDifficulty2;
             var enemiesDifficulty3 = EnemyDirector.instance.enemiesDifficulty3;
-            var enemyCount = roll switch
-            {
-                >= 90 => (PickEnemy(enemiesDifficulty3), 1),
-                _ => (PickEnemy(enemiesDifficulty2), 2)
-            };
+            var enemyCount = (PickEnemy(enemiesDifficulty2), 2);
+            if (Helpers.Chance(10))
+                enemyCount = (PickEnemy(enemiesDifficulty3), 1);
             CartInventory.Logger.LogWarning($"Spawn {enemyCount.Item1.name}");
             SpawnHelper.SpawnEnemy(enemyCount.Item1, component.transform.position, enemyCount.Item2);
         }
@@ -31,13 +28,7 @@ public class CarefulHelper
 
     public static void RollSpawn(ValuableObject component)
     {
-        var roll = Random.Range(1, 99);
-        var skipChance = 100 - (ModConfig.CarefulSkipChance.Value > 100
-            ? 100
-            : ModConfig.CarefulSkipChance.Value < 0
-                ? 0
-                : ModConfig.CarefulSkipChance.Value);
-        if (roll > skipChance)
+        if (Helpers.Chance(ModConfig.CarefulSkipChance.Value))
             return;
         var enemiesDifficulty1 = EnemyDirector.instance.enemiesDifficulty1;
         var enemiesDifficulty2 = EnemyDirector.instance.enemiesDifficulty2;
@@ -56,6 +47,23 @@ public class CarefulHelper
         }
     }
 
+    // Duck
+    // Valuable Thrower
+    // Head
+    // Slow Mouth
+    // Runner
+    // Animal
+    // Robe
+    // Floater
+    // Thin Man
+    // Slow Walker
+    // Ceiling Eye
+    // Tumbler
+    // Bowtie
+    // Hunter
+    // Beamer
+    // Upscream
+    // Hidden
     public static EnemySetup PickEnemy(List<EnemySetup> enemies)
     {
         var fromIndex = Random.Range(0, enemies.Count);
