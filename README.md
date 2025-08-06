@@ -14,24 +14,6 @@ balances immersion with powerful configuration options.
 
 ---
 
-### Интерфейс
-
-![Preview](gifs/interface.gif)
-
-### Конвертация предметов
-
-![dollars_bag.gif](gifs/dollars_bag.gif)
-
-### Сохранение денег в грузовике
-
-![save_in_truck .gif](gifs/save_in_truck%20.gif)
-
-### Извлечение денег из грузовика
-
-![extruct_truck.gif](gifs/extruct_truck.gif)
-
----
-
 # ⚠️ Осторожно | ⚠️ Warning
 
 **[RU]**  
@@ -42,7 +24,9 @@ balances immersion with powerful configuration options.
 This mod is under development and currently only works properly for the host in multiplayer.  
 If multiple players have the mod installed, bugs may occur.
 
----
+| ![Preview](https://raw.githubusercontent.com/gridorius/REPOCartInventory/master/gifs/interface.gif) Интерфейс                | ![Preview](https://raw.githubusercontent.com/gridorius/REPOCartInventory/master/gifs/dollars_bag.gif)Конвертация предметов           | ![Preview](https://raw.githubusercontent.com/gridorius/REPOCartInventory/master/gifs/save_in_truck%20.gif) Сохранение денег в грузовике |
+|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| ![new_shop.gif](https://raw.githubusercontent.com/gridorius/REPOCartInventory/master/gifs/new_shop.gif)     Интернет магазин | ![Preview](https://raw.githubusercontent.com/gridorius/REPOCartInventory/master/gifs/extruct_truck.gif)Извлечение денег из грузовика |                                                                                                                                         |
 
 ## ⚙️ Configuration / Конфигурация
 
@@ -129,14 +113,6 @@ If multiple players have the mod installed, bugs may occur.
 | Enemy tier 2 amount multiplier           | Множитель количества врагов 2 уровня (1.0–10.0)         | 1.4     |
 | Enemy tier 1 amount multiplier           | Множитель количества врагов 1 уровня (1.0–10.0)         | 1.8     |
 | Enable extraction amount scaling         | Включить масштабирование извлекаемых предметов          | true    |
-
----
-
-## 📂 Installation / Установка
-
-1. Requires **BepInEx 5**.
-2. Drop the `.dll` file into your `BepInEx/plugins` folder.
-3. Launch the game and tweak the config under `BepInEx/config`.
 
 ---
 
