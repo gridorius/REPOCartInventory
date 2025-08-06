@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CartInventory.Challenges;
+using CartInventory.Extensions;
 using HarmonyLib;
 
 namespace CartInventory;
@@ -14,7 +16,8 @@ public class LevelStats
     public static int ExploredModules;
     public static float TotalValuablesDamage;
     public static bool FirstExtractionPointOpened = false;
-    public static float Time;
+    public static float Time = 0;
+    public static float ValuableChangeTime = 0;
     public static TruckScreenText.PlayerChatBoxState TruckScreenState = TruckScreenText.PlayerChatBoxState.Idle;
     public static List<ValuableObject> ValuableObjects = new();
     public static List<ValuableObject> Orbs = new();
@@ -64,7 +67,7 @@ public class LevelStats
         {
             var roomValue = Traverse.Create(valuable).Field("roomVolumeCheck").GetValue<RoomVolumeCheck>();
             var inExtractionPoint = Traverse.Create(roomValue).Field("inExtractionPoint").GetValue<bool>();
-            var dollars = Traverse.Create(valuable).Field("dollarValueCurrent").GetValue<float>();
+            var dollars = valuable.GetDollarValue();
             if (inExtractionPoint || CartValuables.Any(cart => cart.Value.Contains(valuable)))
             {
                 collected.Item1++;
@@ -80,8 +83,7 @@ public class LevelStats
         LevelDollars = 0;
         foreach (var valuable in ValuableObjects)
         {
-            var dollars = Traverse.Create(valuable).Field("dollarValueCurrent").GetValue<float>();
-            LevelDollars += dollars;
+            LevelDollars += valuable.GetDollarValue();
         }
     }
 
@@ -110,6 +112,27 @@ public class LevelStats
     {
         if (SemiFunc.RunIsLevel() || SemiFunc.RunIsShop())
             if (FirstExtractionPointOpened && !TruckLeaving)
+            {
                 Time += UnityEngine.Time.deltaTime;
+                ValuableChangeTime += UnityEngine.Time.deltaTime;
+            }
+
+        if (ValuableChangeTime >= 120)
+        {
+            ValuableChangeTime -= 120;
+            if (ChallengeManager.CurrentChallengeIs(Challenges.Challenges.FastExtraction))
+            {
+                foreach (var valuable in ValuableObjects)
+                    valuable.SetDollarValue(valuable.GetDollarValue() * 0.9f);
+                UpdateLevelDollars();
+            }
+
+            if (ChallengeManager.CurrentChallengeIs(Challenges.Challenges.MoneyTime))
+            {
+                foreach (var valuable in ValuableObjects)
+                    valuable.SetDollarValue(valuable.GetDollarValue() * 1.1f);
+                UpdateLevelDollars();
+            }
+        }
     }
 }

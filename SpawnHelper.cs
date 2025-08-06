@@ -32,11 +32,7 @@ public static class SpawnHelper
         var valuableComponent = gameObject.GetComponent<ValuableObject>();
         var physGrabObject = gameObject.GetComponent<PhysGrabObject>();
         Traverse.Create(physGrabObject).Field("spawnTorque").SetValue(Random.insideUnitSphere * 0.05f);
-        Traverse.Create(valuableComponent).Field("dollarValueOverride").SetValue(dollars);
-        if (SemiFunc.IsMasterClient())
-            Traverse.Create(valuableComponent).Field("photonView").GetValue<PhotonView>().RPC(
-                "DollarValueSetRPC", RpcTarget.All, dollars);
-
+        valuableComponent.SetDollarValue(dollars);
         SpawnedBags.Add(valuableComponent);
     }
 

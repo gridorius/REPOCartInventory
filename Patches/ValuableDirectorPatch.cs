@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
+using CartInventory.Challenges;
 using CartInventory.Extensions;
 using HarmonyLib;
 using UnityEngine;
@@ -78,16 +79,22 @@ internal class ValuableDirectorPatch
 
     private static int NewTinyItemCount()
     {
+        if (ChallengeManager.CurrentChallengeIs(Challenges.Challenges.BigItems))
+            return 0;
         return MultiplyItemCount(TinyMaxAmount);
     }
 
     private static int NewSmallItemCount()
     {
+        if (ChallengeManager.CurrentChallengeIs(Challenges.Challenges.BigItems))
+            return 0;
         return MultiplyItemCount(SmallMaxAmount);
     }
 
     private static int NewMediumItemCount()
     {
+        if (ChallengeManager.CurrentChallengeIs(Challenges.Challenges.BigItems))
+            return 0;
         return MultiplyItemCount(MediumMaxAmount);
     }
 
@@ -98,11 +105,15 @@ internal class ValuableDirectorPatch
 
     private static int NewWideItemCount()
     {
+        if (ChallengeManager.CurrentChallengeIs(Challenges.Challenges.BigItems))
+            return 0;
         return MultiplyItemCount(WideMaxAmount);
     }
 
     private static int NewTallItemCount()
     {
+        if (ChallengeManager.CurrentChallengeIs(Challenges.Challenges.BigItems))
+            return 0;
         return MultiplyItemCount(TallMaxAmount);
     }
 

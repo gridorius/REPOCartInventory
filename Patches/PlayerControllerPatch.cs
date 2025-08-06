@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using CartInventory.Extensions;
+using CartInventory.Shop;
 using HarmonyLib;
 using Photon.Pun;
 using UnityEngine;
@@ -34,6 +36,8 @@ public class PlayerControllerPatch
                 ExtractDollars();
             if (IsButtonPressed(ModConfig.BagSplitKey.Value))
                 SplitBags();
+            if (IsButtonPressed(ModConfig.InternetShopKey.Value))
+                ShopUI.ShowPopup();
         }
     }
 
@@ -89,7 +93,7 @@ public class PlayerControllerPatch
         var component = GrabbedObject.GetComponent<ValuableObject>();
         if (component != null && SpawnHelper.SpawnedBags.Contains(component))
         {
-            var dollars = Traverse.Create(component).Field("dollarValueCurrent").GetValue<float>();
+            var dollars = component.GetDollarValue();
             if (dollars < 50)
                 return;
 
@@ -97,10 +101,7 @@ public class PlayerControllerPatch
             var spawnPosition = new Vector3(component.transform.position.x, component.transform.position.y + 1f,
                 component.transform.position.z);
             SpawnHelper.SpawnTaxBag(spawnPosition, (int)newPrice);
-            component.DollarValueSetRPC(newPrice);
-            if (SemiFunc.IsMasterClient())
-                Traverse.Create(component).Field("photonView").GetValue<PhotonView>().RPC(
-                    "DollarValueSetRPC", RpcTarget.All, newPrice);
+            component.SetDollarValue(newPrice);
             LastSplit = LevelStats.Time;
         }
     }

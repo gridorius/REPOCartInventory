@@ -46,12 +46,28 @@
       <HintPath>..\..\..\..\Program Files (x86)\Steam\steamapps\common\REPO\REPO_Data\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="HumanizedShop">
+      <HintPath>..\..\Downloads\upgame-HumanizedShop-1.0.0\HumanizedShop.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="ItemSeller">
       <HintPath>..\..\Downloads\OldBody-ItemSeller-1.0.4\ItemSeller.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="LevelScaling">
       <HintPath>..\..\Downloads\Swaggies-LevelScaling-0.7.0\LevelScaling.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MenuLib">
+      <HintPath>..\..\Downloads\nickklmao-MenuLib-2.5.0\MenuLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MoreHead">
+      <HintPath>..\..\Downloads\YMC_MHZ-MoreHead-1.4.1\plugins\MoreHead\MoreHead.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MoreShopItems">
+      <HintPath>..\..\Downloads\Jettcodey-MoreShopItems_Updated-2.1.3\MoreShopItems.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="mscorlib">
@@ -67,6 +83,10 @@
     </Reference>
     <Reference Include="REPOLib">
       <HintPath>..\..\AppData\Roaming\Thunderstore Mod Manager\DataFolder\REPO\profiles\public\BepInEx\plugins\Zehs-REPOLib\REPOLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="REPO_No_Shop">
+      <HintPath>..\..\Downloads\itsUndefined-REPO_No_Shop-1.0.1\REPO_No_Shop.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="REPO_Shop_Items_in_Level">

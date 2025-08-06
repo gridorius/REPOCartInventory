@@ -1,6 +1,6 @@
 {
   "name": "CartInventory",
-  "version_number": "1.3.0",
+  "version_number": "1.4.0",
   "website_url": "https://github.com/gridorius/REPOCartInventory",
   "description": "This mod enhances item and enemy management:item conversion, advanced HUD, spawn customization, truck resource saving,and dynamic difficulty scaling.",
   "dependencies": [

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CartInventory.DTO;
+using CartInventory.Extensions;
 using HarmonyLib;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class TruckController
 {
     public static List<ValuableAndPhysic> TruckItems = new();
     private Transform? _truckTransform;
+    private static float objectInTruckCheckTimer = 0.5f;
 
     public TruckController()
     {
@@ -46,7 +48,7 @@ public class TruckController
         {
             foreach (var item in TruckItems)
             {
-                var price = Traverse.Create(item.Valuable).Field("dollarValueCurrent").GetValue<float>();
+                var price = item.Valuable.GetDollarValue();
                 CartInventory.Instance.SaveManager.Data.TrackDollars += (int)price;
                 item.Physic.DestroyPhysGrabObject();
             }

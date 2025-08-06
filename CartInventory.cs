@@ -1,23 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using BepInEx;
-using BepInEx.Configuration;
 using BepInEx.Logging;
+using CartInventory.Shop;
 using HarmonyLib;
+using MenuLib;
+using MenuLib.MonoBehaviors;
+using MenuLib.Structs;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace CartInventory;
 
 [BepInPlugin("Gridorius.CartInventory", "CartInventory", "1.0")]
 public class CartInventory : BaseUnityPlugin
 {
+    private TruckController _truckController;
     internal static CartInventory Instance { get; private set; } = null!;
     internal new static ManualLogSource Logger => Instance._logger;
     private ManualLogSource _logger => base.Logger;
     internal Harmony? Harmony { get; set; }
     public bool IsLoaded { get; private set; }
     public SaveManager SaveManager { get; set; }
-
-    private TruckController _truckController;
 
     private void Awake()
     {
@@ -31,6 +37,7 @@ public class CartInventory : BaseUnityPlugin
         IsLoaded = true;
         Logger.LogInfo($"{Info.Metadata.GUID} v{Info.Metadata.Version} has loaded!");
         _truckController = new TruckController();
+        ShopUI.Initialize();
     }
 
     private void Update()

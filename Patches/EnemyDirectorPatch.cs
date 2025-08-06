@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using CartInventory.Challenges;
+using CartInventory.Extensions;
 using HarmonyLib;
 using UnityEngine;
 
@@ -22,7 +24,7 @@ internal class EnemyDirectorPatch
         ref float ___despawnedTimeMultiplier)
     {
         if (!ModConfig.EnableEnemyScaling.Value ||
-            LevelStats.CurrentLevel < ModConfig.EnableEnemyScalingSkipLevels.Value + 1)
+            LevelStats.CurrentLevel < ModConfig.EnemyScalingSkipLevels.Value + 1)
             return true;
         var difficultyMultiplier1 = SemiFunc.RunGetDifficultyMultiplier1();
         var difficultyMultiplier2 = SemiFunc.RunGetDifficultyMultiplier2();
@@ -53,6 +55,13 @@ internal class EnemyDirectorPatch
                                 ModConfig.EnemyTier1Multiplier.Value) + 1;
         }
 
+        if (ChallengeManager.CurrentChallengeIs(Challenges.Challenges.MoneyTime))
+        {
+            ___amountCurve3Value += 2;
+            ___amountCurve2Value += 4;
+            ___amountCurve1Value += 8;
+        }
+
         var traverse = Traverse.Create(EnemyDirector.instance);
         ___enemyListCurrent.Clear();
         for (var index = 0; index < ___amountCurve1Value; ++index)
@@ -68,5 +77,21 @@ internal class EnemyDirectorPatch
             ___despawnedTimeMultiplier = __instance.despawnTimeCurve_1.Evaluate(difficultyMultiplier2);
         ___totalAmount = ___amountCurve1Value + ___amountCurve2Value + ___amountCurve3Value;
         return false;
+    }
+
+    [HarmonyPatch("PickEnemies")]
+    [HarmonyPrefix]
+    private static bool PickEnemies(EnemyDirector __instance)
+    {
+        if (SemiFunc.IsMasterClientOrSingleplayer() &&
+            ChallengeManager.CurrentChallengeIs(Challenges.Challenges.DuckRaid))
+        {
+            var setup = __instance.GetEnemyThatContainsName("Duck");
+            __instance.GetEnemyListCurrent().Add(setup);
+            __instance.GetEnemyList().Add(setup);
+            return false;
+        }
+
+        return true;
     }
 }

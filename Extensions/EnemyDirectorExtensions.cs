@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using HarmonyLib;
 
 namespace CartInventory.Extensions;
 
@@ -46,5 +47,15 @@ public static class EnemyDirectorExtensions
     {
         return enemyDirector.GetEnemies()
             .FirstOrDefault(x => x.name.Contains(name));
+    }
+
+    public static List<EnemySetup> GetEnemyList(this EnemyDirector director)
+    {
+        return Traverse.Create(director).Field("enemyList").GetValue<List<EnemySetup>>();
+    }
+    
+    public static List<EnemySetup> GetEnemyListCurrent(this EnemyDirector director)
+    {
+        return Traverse.Create(director).Field("enemyListCurrent").GetValue<List<EnemySetup>>();
     }
 }

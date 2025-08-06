@@ -51,13 +51,11 @@ public class SaveManager
         if (SemiFunc.IsMultiplayer())
             return;
         var path = GetCurrentSaveFilePath();
-        CartInventory.Logger.LogInfo($"Save path: {path}");
         if (!File.Exists(path))
         {
             var directoryName = Path.GetDirectoryName(path);
             if (directoryName != null && !Directory.Exists(directoryName))
             {
-                CartInventory.Logger.LogInfo($"Create directory: {directoryName}");
                 Directory.CreateDirectory(directoryName);
             }
         }
@@ -76,7 +74,6 @@ public class SaveManager
             var fileData = JsonConvert.DeserializeObject<SaveData>(File.ReadAllText(path));
             if (fileData != null)
             {
-                CartInventory.Logger.LogInfo($"Loaded from path: {path}");
                 Data = fileData;
             }
         }
@@ -90,7 +87,6 @@ public class SaveManager
         var path = GetCurrentSaveFilePath();
         if (File.Exists(path))
         {
-            CartInventory.Logger.LogInfo($"Deleted: {path}");
             File.Delete(path);
         }
     }

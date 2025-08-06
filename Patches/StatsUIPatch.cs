@@ -8,5 +8,5 @@ internal class StatsUIPatch
 {
     [HarmonyPatch("Start")]
     [HarmonyPostfix]
-    private static void StartP(ref StatsUI __instance) => ItemsStatsUI.Create(__instance);
+    private static void StartP(ref StatsUI __instance) => LevelStatsUI.Create(__instance);
 }

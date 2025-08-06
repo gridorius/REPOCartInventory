@@ -1,3 +1,37 @@
+# 📦 Enhanced Gameplay Mod / Мод Расширенного Геймплея
+
+## 🌟 Description / Описание
+
+**EN:**  
+This mod improves and expands gameplay by adding a customizable HUD, scaling systems, an internet shop interface, and
+detailed control over enemy spawns and item interactions. It introduces a “Careful Mode” for progressive difficulty and
+balances immersion with powerful configuration options.
+
+**RU:**  
+Этот мод улучшает и расширяет игровой процесс, добавляя настраиваемый HUD, системы масштабирования, интерфейс
+интернет-магазина и подробный контроль над спавном врагов и взаимодействием с предметами. Вводит “Осторожный режим” для
+постепенного усложнения и предлагает гибкую систему настроек.
+
+---
+
+### Интерфейс
+
+![Preview](gifs/interface.gif)
+
+### Конвертация предметов
+
+![dollars_bag.gif](gifs/dollars_bag.gif)
+
+### Сохранение денег в грузовике
+
+![save_in_truck .gif](gifs/save_in_truck%20.gif)
+
+### Извлечение денег из грузовика
+
+![extruct_truck.gif](gifs/extruct_truck.gif)
+
+---
+
 # ⚠️ Осторожно | ⚠️ Warning
 
 **[RU]**  
@@ -10,88 +44,104 @@ If multiple players have the mod installed, bugs may occur.
 
 ---
 
-## 📦 Описание | Description
+## ⚙️ Configuration / Конфигурация
 
-**[RU]**  
-Мод добавляет:
-
-- Конвертацию предметов в тележке в мешок
-- Настройки спавна мобов и продаваемых объектов
-- Изменение стоимости продаваемых предметов
-- Удобный HUD с полезной информацией
-- Возможность сохранять деньги в грузовике
-
-**[EN]**  
-This mod adds:
-
-- Conversion of cart items into a money bag
-- Settings for mob and sellable item spawns
-- Customization of item values
-- A user-friendly HUD with useful data
-- Ability to store money in the truck
+> All options are configurable via BepInEx config files.  
+> Все параметры можно настроить через конфигурационные файлы BepInEx.
 
 ---
 
-## ⚙️ Конфигурация | Configuration
+### 🛒 Cart / Тележка
 
-### 🛒 Cart
-
-- `Enable valuable convert`  
-  **[RU]** Включает конвертацию предметов в корзине  
-  **[EN]** Enables cart item-to-bag conversion
-
----
-
-### 🖥️ Status HUD
-
-- `Show hud` – показать/скрыть интерфейс | show/hide HUD
-- `PositionX` – позиция по горизонтали | horizontal position
-- `PositionY` – позиция по вертикали | vertical position
-- `Show level` – отображать текущий уровень | show current level
-- `Show time` – отображать время | show time
-- `Show saved` – отображать сохраненные деньги | show saved dollars
-- `Show collected` – показывать количество собранных вещей | show collected items
-- `Show collected percent` – процент собранных вещей | show collected percentage
-- `Show dollars` – собранные доллары | show collected dollars
-- `Show dollars percent` – процент собранных долларов | show dollar collection %
-- `Show lost` – отображать урон предметов | show item damage
-- `Show explored` – исследованные модули | show explored modules
-- `Show immortal` – количество безсмертных | show immortal
-- `Show kills` – количество убийств | show kills
-- `Show carts` – показывать тележки | show carts
+| Key (EN)                  | RU Описание                           | Default |
+|---------------------------|---------------------------------------|---------|
+| Enable valuable convert   | Включить конвертацию ценных предметов | true    |
+| Cart vacuum cleaner scale | Масштаб пылесоса тележки (0.5–10.0)   | 0.6     |
 
 ---
 
-### 🚚 Truck
+### 🛍 Internet Shop / Интернет-магазин
 
-- `Enable truck items` – сохранять предметы в грузовике | save items in truck
-- `Button extract track dollars into cart` – кнопка для переноса денег в тележку | extract truck dollars to cart
-- `Button to split all bags` – разделение мешка денег | split money bag in half
-
----
-
-### 🧨 Careful Mode
-
-- `Enable` – осторожный режим | enable careful mode
-- `Chance skip spawn, damage saved to next iteration`  
-  **[RU]** шанс пропустить спавн мобов, урон сохраняется  
-  **[EN]** chance to skip mob spawn, damage carries over
-- `Register orb damage` – регистрировать урон по орбам | register orb damage
-- `Damage to spawn enemy t3` – урон для врага тира 3 | damage to spawn tier 3 enemy
-- `Damage to spawn enemy t2` – урон для врага тира 2 | damage to spawn tier 2 enemy
-- `Damage to spawn enemy t1` – урон для врага тира 1 | damage to spawn tier 1 enemy
+| Key (EN)                  | RU Описание                       | Default |
+|---------------------------|-----------------------------------|---------|
+| Enable new shop interface | Включить новый интерфейс магазина | true    |
+| Skip shop level           | Пропуск уровня магазина           | true    |
+| Shop open button          | Клавиша открытия магазина         | "l"     |
 
 ---
 
-### 📈 Scaling
+### 🧾 HUD / HUD-интерфейс
 
-- `Enable module scaling` – измененная генерация модулей | enable module scaling
-- `Enable valuable scaling` – измененная генерация предметов | enable item scaling
-- `Enable enemy scaling` – измененный спавн врагов | enable enemy scaling
-- `Enable immortal` – безсмертные враги | enable immortal enemies
-- `Immortal chance` – шанс появление безсмертного врага | chance spawn immortal enemies
-- `Enable enemy scaling skip levels` – пропуск уровней перед масштабированием | skip levels before scaling
-- `Enemy t3 multiplier` – множитель врагов тира 3 | tier 3 enemy multiplier
-- `Enemy t2 multiplier` – множитель врагов тира 2 | tier 2 enemy multiplier
-- `Enemy t1 multiplier` – множитель врагов тира 1 | tier 1 enemy multiplier
-- `Enable extraction scaling` – масштабирование экстракторов | enable extractor scaling  
+| Key (EN)                             | RU Описание                                 | Default |
+|--------------------------------------|---------------------------------------------|---------|
+| Show hud                             | Показывать HUD                              | true    |
+| Hud position x                       | Положение по X                              | -240    |
+| Hud position y                       | Положение по Y                              | 30      |
+| Show level                           | Показывать уровень                          | true    |
+| Show time                            | Показывать время                            | true    |
+| Show saved dollars                   | Показывать сохранённые доллары              | true    |
+| Show collected valuables             | Показывать собранные ценности               | true    |
+| Show collected valuables percent     | Показывать % собранных ценностей            | true    |
+| Show level dollars                   | Показывать доллары за уровень               | true    |
+| Show level dollars collected percent | Показывать % собранных долларов             | true    |
+| Show lost dollars                    | Показывать потерянные доллары               | true    |
+| Show amount of explored modules      | Показывать количество исследованных модулей | true    |
+| Show immortal enemies                | Показывать бессмертных врагов               | true    |
+| Show kills                           | Показывать количество убийств               | true    |
+| Show carts info                      | Показывать информацию о тележках            | true    |
+
+---
+
+### 🚚 Truck / Грузовик
+
+| Key (EN)                        | RU Описание                                     | Default |
+|---------------------------------|-------------------------------------------------|---------|
+| Enable save items in truck      | Сохранять предметы в грузовике                  | true    |
+| Button to extract truck dollars | Клавиша извлечения денег из грузовика в тележку | Slash   |
+| Button to split grabbed bag     | Клавиша разделения захваченного мешка           | Period  |
+
+---
+
+### 🔒 Careful Mode / Осторожный режим
+
+| Key (EN)                                     | RU Описание                                                         | Default |
+|----------------------------------------------|---------------------------------------------------------------------|---------|
+| Enable                                       | Включить режим                                                      | true    |
+| Register orb damage                          | Учитывать урон от сфер                                              | false   |
+| Chance skip spawn, damage saved to next iter | Шанс пропустить спавн, урон переносится на следующую волну (0–100%) | 40      |
+| Damage to spawn enemy tier 3                 | Урон для появления врага 3 уровня                                   | 5000    |
+| Damage to spawn enemy tier 2                 | Урон для появления врага 2 уровня                                   | 3000    |
+| Damage to spawn enemy tier 1                 | Урон для появления врага 1 уровня                                   | 2000    |
+
+---
+
+### 📈 Scaling / Масштабирование
+
+| Key (EN)                                 | RU Описание                                             | Default |
+|------------------------------------------|---------------------------------------------------------|---------|
+| Enable module amount scaling             | Включить масштабирование количества модулей             | true    |
+| Enable valuable amount and price scaling | Включить масштабирование количества/стоимости ценностей | true    |
+| Enable enemy amount scaling              | Включить масштабирование количества врагов              | true    |
+| Enable immortal enemies                  | Включить бессмертных врагов                             | true    |
+| Immortal spawn chance                    | Шанс появления бессмертных врагов (0–100%)              | 30      |
+| Enemy scaling skip levels                | Пропуск уровней до масштабирования врагов               | 1       |
+| Enemy tier 3 amount multiplier           | Множитель количества врагов 3 уровня (1.0–10.0)         | 1.2     |
+| Enemy tier 2 amount multiplier           | Множитель количества врагов 2 уровня (1.0–10.0)         | 1.4     |
+| Enemy tier 1 amount multiplier           | Множитель количества врагов 1 уровня (1.0–10.0)         | 1.8     |
+| Enable extraction amount scaling         | Включить масштабирование извлекаемых предметов          | true    |
+
+---
+
+## 📂 Installation / Установка
+
+1. Requires **BepInEx 5**.
+2. Drop the `.dll` file into your `BepInEx/plugins` folder.
+3. Launch the game and tweak the config under `BepInEx/config`.
+
+---
+
+## 💬 Feedback / Обратная связь
+
+Feel free to open issues or pull requests.  
+Открывайте issue или присылайте предложения через pull request.
+

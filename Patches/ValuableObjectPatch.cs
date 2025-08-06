@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using CartInventory.Challenges;
+using CartInventory.Extensions;
 using HarmonyLib;
 
 namespace CartInventory.Patches;
@@ -6,6 +8,8 @@ namespace CartInventory.Patches;
 [HarmonyPatch(typeof(ValuableObject))]
 public static class ValuableObjectPatch
 {
+    private static float Time = 0f;
+
     [HarmonyPatch("Start")]
     [HarmonyPostfix]
     private static void Start()
@@ -20,16 +24,17 @@ public static class ValuableObjectPatch
         if (SemiFunc.IsMasterClientOrSingleplayer()
             && ModConfig.EnableValuableScaling.Value
             && !SpawnHelper.SpawnedBags.Contains(__instance)
+            && !LevelStats.ValuableObjects.Contains(__instance)
            )
         {
-            var traverse = Traverse.Create(__instance).Field("dollarValueCurrent");
+            var traverse = __instance.GetDollarTraverse();
             var num = traverse.GetValue<float>();
             if (num <= 1000.0)
-                traverse.SetValue((float)(num * 1.5));
+                traverse.SetValue((float)(num * 1.7));
             else if (num <= 5000.0)
-                traverse.SetValue((float)(num * 1.3));
+                traverse.SetValue((float)(num * 1.5));
             else if (num <= 10000.0)
-                traverse.SetValue((float)(num * 1.2));
+                traverse.SetValue((float)(num * 1.3));
             else
                 traverse.SetValue((float)(num * 1.1));
         }
